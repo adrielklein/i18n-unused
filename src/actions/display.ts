@@ -14,6 +14,9 @@ export const displayUnusedTranslations = async (options: RunOptions) => {
     config.localesPath,
     config.localesExtensions,
   );
+  
+  let message = '';
+  let unusedKeys = 0;
 
   for (const localePath of localesFilePaths) {
     const locale = require(localePath);
@@ -30,8 +33,10 @@ export const displayUnusedTranslations = async (options: RunOptions) => {
       });
     });
 
-    console.log('<<<==========================================================>>>');
-    console.log(`Unused locales in: ${localePath}`);
-    console.table(translationsKeys.map((key: string) => ({ 'Translation': key })));
+    message += '<<<==========================================================>>>\n';
+    message += `Unused locales in: ${localePath}`;
+    message += translationsKeys.map((key: string) => (key)).join(','));
+    unusedKeys += translationsKeys.length
   }
+  return {message, unusedKeys}
 };
