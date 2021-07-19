@@ -35,7 +35,7 @@ export const displayUnusedTranslations = async (options: RunOptions) => {
 
     message += '<<<==========================================================>>>\n';
     message += `Unused locales in: ${localePath}`;
-    message += translationsKeys.map((key: string) => (key)).join(','));
+    message += translationsKeys.map((key: string) => (key)).join(',');
     unusedKeys += translationsKeys.length
   }
   return {message, unusedKeys}
